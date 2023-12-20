@@ -1,0 +1,30 @@
+<h1><%= @doc.title %></h1>
+<h2><%= @doc.body %></h2>
+
+<%= link_to "Редактировать", edit_doc_path(@doc), :class => 'btn btn-warning'%>
+<%# data: {confirm: "Хотите удалить документ?", turbo: false} %>
+<%# <%= link_to "Удалить", @doc, method: :delete, :class => 'btn btn-danger' %>
+
+<h2>Все usersdocs</h2>
+<% @doc.users_docs.each do |ud| %>
+    <div class="alert alert-light">
+        <h3><%= ud.username %></h3>
+        <p><%= ud.body %></p>
+    </div>
+<% end %>
+
+<h2>Добавление нового UsersDoc</h2>
+
+<%= form_for([@doc, @doc.users_docs.build]) do |f| %>
+    <p>Пользователь<br>
+    <%= f.text_field(:username, {:class => 'form-control'}) %>
+    </p>
+    <p>Текст UsersDoc<br>
+    <%= f.text_area :body, {:class => 'form-control'} %>
+    </p>
+    <p>
+    <%= f.submit("Добавить usersdoc", {:class => 'btn btn-warning'}) %>
+    </p>
+<% end %>
+    
+    

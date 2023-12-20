@@ -1,0 +1,15 @@
+<h2>Добавление нового документа</h2>
+
+<%= form_for :doc, url: docs_path do |f| %>
+    <p>Название<br>
+    <%= f.text_field(:title, {:class => 'form-control'}) %>
+    </p>
+    <p>Текст статьи<br>
+    <%= f.text_area :body, {:class => 'form-control'} %>
+    </p>
+    <p>
+    <%= f.submit({:class => 'btn btn-success'}) %>
+    </p>
+<% end %>
+    
+    

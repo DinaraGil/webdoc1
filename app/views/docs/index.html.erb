@@ -1,0 +1,10 @@
+<h1>Главная страница</h1>
+<h1>Все посты</h1>
+<% @doc.each do |d| %>
+    <%# bootstrap style settings %>
+    <div class="alert alert-light">
+        <h3><%= d.title %></h3>
+        <p><%= d.body %></p>
+        <%= link_to "Читать далее", doc_path(d) ,:class => 'btn btn-outline-primary'%>
+    </div>
+<% end %>
