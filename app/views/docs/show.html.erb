@@ -11,6 +11,7 @@
             <h3><%= ud.username %></h3>
             <p><%= raw ud.body %></p>
             <%= link_to "Открыть документ", doc_users_doc_path(@doc, ud) ,:class => 'btn btn-outline-primary'%>
+            <%= link_to "Открыть pdf", doc_users_doc_path(@doc, ud, format: :pdf) ,:class => 'btn btn-outline-primary'%>
         </div>
     <% end %>
 <% end %>

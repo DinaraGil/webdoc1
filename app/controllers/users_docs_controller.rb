@@ -21,6 +21,13 @@ class UsersDocsController < ApplicationController
 
     def show
         @users_doc = UsersDoc.find(params[:id])
+
+        respond_to do |format|
+            format.html
+            format.pdf do
+              render pdf: "Users_doc_id: #{@users_doc.id}", template: "users_docs/show", formats: [:html]
+            end
+        end
     end
 
     private

@@ -67,3 +67,6 @@ group :test do
 end
 
 gem 'jquery-rails'
+
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
