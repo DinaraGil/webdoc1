@@ -1,4 +1,12 @@
 class DocsController < ApplicationController
+    before_action :authenticate_user, except: [:index]
+
+    def authenticate_user
+        unless current_user.present?
+          redirect_to new_session_path
+        end
+    end
+
     def index
         @doc = Doc.all
     end
