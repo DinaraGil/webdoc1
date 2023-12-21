@@ -10,6 +10,7 @@
         <div class="alert alert-light">
             <h3><%= ud.username %></h3>
             <p><%= raw ud.body %></p>
+            <%= link_to "Открыть документ", doc_users_doc_path(@doc, ud) ,:class => 'btn btn-outline-primary'%>
         </div>
     <% end %>
 <% end %>

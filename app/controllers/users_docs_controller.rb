@@ -19,6 +19,10 @@ class UsersDocsController < ApplicationController
         end
     end
 
+    def show
+        @users_doc = UsersDoc.find(params[:id])
+    end
+
     private
     def users_doc_params
         params.require(:users_doc).permit(:username, :body)
