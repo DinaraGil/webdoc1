@@ -1,4 +1,4 @@
-<h2>Добавление нового документа</h2>
+<h2>Добавление нового заявления</h2>
 
 <%= form_for :doc, url: docs_path do |f| %>
     <p>Название<br>
@@ -8,7 +8,7 @@
     <%= f.text_area :body, {:class => 'form-control'} %>
     </p>
     <p>
-    <%= f.submit({:class => 'btn btn-success'}) %>
+    <%= f.submit("Сохранить", {:class => 'btn btn-success'}) %>
     </p>
 <% end %>
     

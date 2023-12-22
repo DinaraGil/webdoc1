@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_20_231723) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_22_170247) do
   create_table "docs", force: :cascade do |t|
     t.string "title"
     t.text "body"
@@ -32,6 +32,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_20_231723) do
     t.integer "doc_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "title"
     t.index ["doc_id"], name: "index_users_docs_on_doc_id"
   end
 

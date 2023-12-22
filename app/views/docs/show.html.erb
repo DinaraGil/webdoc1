@@ -1,44 +1,76 @@
 <h1><%= @doc.title %></h1>
 <%# sanitraw - преобразование к html raw - вывод работающего html %>
-<%= raw @doc.body %>
+<hr>
+<% erb_template = ERB.new(@doc.body) %>
+<%= raw erb_template.result(binding) %>
+<hr>
 
-<%= link_to "Редактировать", edit_doc_path(@doc), :class => 'btn btn-warning'%>
+<p class="mt"></p>
 
-<h2>Все Ваши usersdocs</h2>
+<% if current_user.name == "admin" && current_user.email == "admin@gmail.com" %>
+    <h2 class = 'text-red'>Редактирование доступно администратору</h2>
+    <%= link_to "Редактировать", edit_doc_path(@doc), :class => 'btn btn-danger'%>
+<% end %>
+
+<p class="mt"></p>
+
+<h2>Вставьте свои данные</h2>
+
+<div class="mt">
+<%# build создает новый экземпляр модели UsersDoc соответствующий экземпляру @doc %>
+<%= form_for([@doc, @doc.users_docs.build], html: { data: { turbo: false } }) do |f| %> 
+    <%= f.hidden_field :username, value: current_user.name %>
+    <%= f.hidden_field :body, value: @doc.body %>
+
+    <%= bootstrap_labeled_text_field(:title, "Название документа: ") %>
+
+    <% if @doc.body.include?("@to_name") %>
+        <%= bootstrap_labeled_text_field(:to_name, "To Name") %>
+    <% end %>
+
+    <% if @doc.body.include?("@from_name") %>
+        <%= bootstrap_labeled_text_field(:from_name, "From Name") %>
+    <% end %>
+
+    <% if @doc.body.include?("@from_date") %>
+        <%= bootstrap_labeled_date_field(:from_date, "From Date") %>
+    <% end %>
+
+    <% if @doc.body.include?("@current_date") %>
+        <%= bootstrap_labeled_date_field(:current_date, "Current Date") %>
+    <% end %>
+    
+    <% if @doc.body.include?("@job") %>
+        <%= bootstrap_labeled_text_field(:job, "Job") %>
+    <% end %>
+
+    <% if @doc.body.include?("@money") %>
+        <%= bootstrap_labeled_text_field(:money, "Money") %>
+    <% end %>
+
+    <% if @doc.body.include?("@company") %>
+        <%= bootstrap_labeled_text_field(:company, "Company") %>
+    <% end %>
+
+    <br/>
+    <%= f.submit("Сохранить документ", {:class => 'btn btn-success'}) %>
+<% end %>
+</div>
+
+<p class="mt"></p>
+
+<h2>Все Ваши заявления</h2>
 <% @doc.users_docs.each do |ud| %>
     <% if current_user.name == ud.username %>
         <div class="alert alert-light">
-            <h3><%= ud.username %></h3>
-            <p><%= raw ud.body %></p>
-            <%= link_to "Открыть документ", doc_users_doc_path(@doc, ud) ,:class => 'btn btn-outline-primary'%>
+            <p>Пользователь: <%= ud.username %>. Время сохранения: <%= ud.created_at %></p>
+            <h4>Название заявления: <%= ud.title %></h4>
+            <%= link_to "Открыть страницу с документом", doc_users_doc_path(@doc, ud) ,:class => 'btn btn-outline-primary'%>
             <%= link_to "Открыть pdf", doc_users_doc_path(@doc, ud, format: :pdf) ,:class => 'btn btn-outline-primary'%>
         </div>
     <% end %>
 <% end %>
 
-<h2>Добавление нового UsersDoc</h2>
 
-<%# build создает новый экземпляр модели UsersDoc соответствующий экземпляру @doc %>
-<%= form_for([@doc, @doc.users_docs.build]) do |f| %> 
-    <%= f.hidden_field :username, value: current_user.name %>
-    <%= f.hidden_field :body, value: @doc.body %>
-
-    <% if @doc.body.include?("@name") %>
-        <%= label_tag("name:") %>
-        <%= text_field_tag(:name) %> <br/>
-    <% end %>
-
-    <% if @doc.body.include?("@email") %>
-        <%= label_tag("email:") %>
-        <%= text_field_tag(:email) %> <br/>
-    <% end %>
-
-    <% if @doc.body.include?("@data") %>
-        <%= label_tag("data:") %>
-        <%= text_field_tag(:data) %> <br/>
-    <% end %>
-
-    <%= f.submit("Сохранить документ", {:class => 'btn btn-warning'}) %>
-<% end %>
     
     
