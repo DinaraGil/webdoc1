@@ -33,13 +33,6 @@ class DocsController < ApplicationController
         end
     end
 
-    # def destroy
-    #     @doc = Doc.find(params[:id])
-        
-    #     @doc.destroy
-    #     redirect_to docs_path
-    # end
-
     def create
         #проверка работы. используется для вывода содержимого параметра :docs в виде строки (plain text) на странице ответа.
         # render plain: params[:doc].inspect

@@ -70,3 +70,5 @@ gem 'jquery-rails'
 
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
+
+gem 'rails-controller-testing'
