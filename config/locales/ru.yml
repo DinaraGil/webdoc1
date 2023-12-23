@@ -1,0 +1,20 @@
+ru:
+  index:
+    title_index: "Все заявления"
+    hi: "Здравствуйте"
+
+  buttons:
+    save: "Сохранить"
+    make_doc: "Создать заявление"
+    add_buttton: "Добавить"
+
+  show:
+    input_text: "Вставьте свои данные"
+    all_your_docs_text: "Все Ваши заявления"
+
+  entry:
+    login: "Вход"
+    signup: "Регистрация"
+    entry_info: "Введите свои email и пароль."
+    password: "Пароль"
+    name: "Имя"

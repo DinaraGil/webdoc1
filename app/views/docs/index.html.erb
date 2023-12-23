@@ -1,8 +1,8 @@
-<h1>Все заявления</h1>
+<h1><%= t('index.title_index') %></h1>
 
 <% if current_user.present? && current_user.name == "admin" && current_user.email == "admin@gmail.com" %>
     <h2 class = 'text-red'>Добавление нового заявления доступно администратору</h2>
-    <%= link_to "Добавить", new_doc_path(@doc), :class => 'btn btn-danger'%>
+    <%= link_to t('buttons.add_buttton'), new_doc_path(@doc), :class => 'btn btn-danger'%>
 <% end %>
 
 <% @doc.each do |d| %>
@@ -10,6 +10,6 @@
     <div class="alert alert-light">
         <h3><%= d.title %></h3>
         <%# <p><%= d.body %>
-        <%= link_to "Создать заявление", doc_path(d) ,:class => 'btn btn-success'%>
+        <%= link_to t('buttons.make_doc'), doc_path(d) ,:class => 'btn btn-success'%>
     </div>
 <% end %>

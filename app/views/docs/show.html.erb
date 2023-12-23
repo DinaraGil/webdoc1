@@ -14,7 +14,7 @@
 
 <p class="mt"></p>
 
-<h2>Вставьте свои данные</h2>
+<h2><%= t('show.input_text')%></h2>
 
 <div class="mt">
 <%# build создает новый экземпляр модели UsersDoc соответствующий экземпляру @doc %>
@@ -25,41 +25,41 @@
     <%= bootstrap_labeled_text_field(:title, "Название документа: ") %>
 
     <% if @doc.body.include?("@to_name") %>
-        <%= bootstrap_labeled_text_field(:to_name, "To Name") %>
+        <%= bootstrap_labeled_text_field(:to_name, "От кого") %>
     <% end %>
 
     <% if @doc.body.include?("@from_name") %>
-        <%= bootstrap_labeled_text_field(:from_name, "From Name") %>
+        <%= bootstrap_labeled_text_field(:from_name, "Кому") %>
     <% end %>
 
     <% if @doc.body.include?("@from_date") %>
-        <%= bootstrap_labeled_date_field(:from_date, "From Date") %>
+        <%= bootstrap_labeled_date_field(:from_date, "Дата начала") %>
     <% end %>
 
     <% if @doc.body.include?("@current_date") %>
-        <%= bootstrap_labeled_date_field(:current_date, "Current Date") %>
+        <%= bootstrap_labeled_date_field(:current_date, "Текущая дата") %>
     <% end %>
     
     <% if @doc.body.include?("@job") %>
-        <%= bootstrap_labeled_text_field(:job, "Job") %>
+        <%= bootstrap_labeled_text_field(:job, "Работа") %>
     <% end %>
 
     <% if @doc.body.include?("@money") %>
-        <%= bootstrap_labeled_text_field(:money, "Money") %>
+        <%= bootstrap_labeled_text_field(:money, "Сумма") %>
     <% end %>
 
     <% if @doc.body.include?("@company") %>
-        <%= bootstrap_labeled_text_field(:company, "Company") %>
+        <%= bootstrap_labeled_text_field(:company, "Название компании") %>
     <% end %>
 
     <br/>
-    <%= f.submit("Сохранить документ", {:class => 'btn btn-success'}) %>
+    <%= f.submit(t('buttons.save'), {:class => 'btn btn-success'}) %>
 <% end %>
 </div>
 
 <p class="mt"></p>
 
-<h2>Все Ваши заявления</h2>
+<h2><%= t('show.all_your_docs_text') %></h2>
 <% @doc.users_docs.each do |ud| %>
     <% if current_user.name == ud.username %>
         <div class="alert alert-light">

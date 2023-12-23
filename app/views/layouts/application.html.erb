@@ -17,33 +17,35 @@
       <div class="col-md-3 mb-2 mb-md-0">
         <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
           <img src="<%= asset_path('document-icon.jpg') %>" alt="Can't show img" class="bi" width="50" height="50" title="Главная страница">
-          <%# <span>текст к картинке</span> %>
-          <%# <svg class="bi" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg> %>
         </a>
       </div>
 
-      <%# <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-        <%# <li><span class="nav-link px-2 link-secondary"><%= link_to "Добавление док", new_doc_path %>
-        <%# <li><a href="#" class="nav-link px-2">Features</a></li>
-        <li><a href="#" class="nav-link px-2">Pricing</a></li>
-        <li><a href="#" class="nav-link px-2">FAQs</a></li>
-        <li><a href="#" class="nav-link px-2">About</a></li> %>
-      <%# </ul> %>
+      <%# <ul class="nav col-12 col-lg-auto me-lg mb-2 justify-content-center mb-md-0">
+          <li><div class="language-select">
+          <%= form_tag(change_language_path, method: :post) do %>
+            <%# <%= select_tag(:locale, options_for_select([['English', 'en'], ['Русский', 'ru']], I18n.locale.to_s), class: 'form-select', onchange: 'this.form.submit();') %>
+          <%# <% end %>
+        <%# </div></li>
+        </ul> %> 
 
       <div class="col-md-3 text-end">
           <% if current_user.present? %>
           <div class="d-flex align-items-center">
-             <%= content_tag 'span', "Здравствуйте, #{current_user.name}" %>&nbsp;&nbsp;
+             <%= content_tag 'span', "#{t('index.hi')}, #{current_user.name}" %>&nbsp;&nbsp;
               <%= button_to "Выйти", session_path, method: :delete, class: "btn btn-outline-primary me-2" %>
           </div>
-            <%# <%= content_tag 'span', "Здравствуйте, #{current_user.name}", class: 'mr-sm' %>
-            <%# <%= button_to "Выйти", session_path, method: :delete, class: "btn btn-outline-primary me-2" %>
           <% else %>
-            <button type="button" class="btn btn-outline-primary"><%= link_to "Войти", new_session_path %></button>
-            <button type="button" class="btn btn-outline-primary"><%= link_to "Зарегистрироваться", new_user_path %></button>
+            <button type="button" class="btn btn-outline-primary"><%= link_to t('entry.login'), new_session_path %></button>
+            <button type="button" class="btn btn-outline-primary"><%= link_to t('entry.signup'), new_user_path %></button>
           <% end %>
       </div>
     </header>
+
+    <div class="language-select">
+    <%= form_tag(change_language_path, method: :post) do %>
+      <%= select_tag(:locale, options_for_select([['English', 'en'], ['Русский', 'ru']], I18n.locale.to_s), class: 'form-select', onchange: 'this.form.submit();') %>
+    <% end %>
+  </div> 
 
       <div class="wrapper">
         <% if flash[:notice].present? %>

@@ -1,15 +1,15 @@
-<h2 class="title">Вход</h2>
+<h2 class="title"><%= t('entry.login') %></h2>
 
-<p class="mt">Введите свои email и пароль для входа на сайт</p>
+<p class="mt"><%= t('entry.entry_info') %></p>
 
 <div class="mt">
     <%= form_with scope: :session, url: session_path, data: {turbo: false} do |form| %>
         <p><%= form.label :email %></p>
         <p><%= form.email_field :email, class: 'form-text-field' %></p>
 
-        <p><%= form.label :password %></p>
+        <p><%= form.label :password, t('entry.password') %></p>
         <p><%= form.password_field :password, class: 'form-text-field', minlength: 4 %></p>
 
-        <p class="mt"><%= form.submit 'Войти', class: 'btn btn-outline-success' %></p>
+        <p class="mt"><%= form.submit t('entry.login'), class: 'btn btn-outline-success' %></p>
     <% end %>
 </div>

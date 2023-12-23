@@ -1,4 +1,4 @@
-<h2 class = "title">Регистрация</h2>
+<h2 class = "title"><%= t('entry.signup') %></h2>
 
 <% if @user.errors.any? %>
     <div class="mt">
@@ -10,15 +10,15 @@
 
 <div class="mt">
     <%= form_with model: @user, data: {turbo: false} do |form| %>
-        <p><%= form.label :name, 'Имя:' %></p>
+        <p><%= form.label :name, t('entry.name') %></p>
         <p><%= form.text_field :name, class: 'form-text-field', minlength: 1 %></p>
 
         <p><%= form.label :email %></p>
         <p><%= form.email_field :email, class: 'form-text-field' %></p>
 
-        <p><%= form.label :password %></p>
+        <p><%= form.label :password, t('entry.password') %></p>
         <p><%= form.password_field :password, class: 'form-text-field', minlength: 4 %></p>
 
-        <p><%= form.submit 'Зарегистрироваться', class: 'btn btn-outline-success' %></p>
+        <p><%= form.submit t('entry.signup'), class: 'btn btn-outline-success' %></p>
     <% end %>
 </div>

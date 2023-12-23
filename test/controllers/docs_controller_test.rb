@@ -1,7 +1,7 @@
 require "test_helper"
 
 class DocsControllerTest < ActionDispatch::IntegrationTest
-  #используется фикстуры - набор данных для тестов
+  #используются фикстуры - набор данных для тестов
   setup do
     @doc = docs(:one)
   end
@@ -69,7 +69,7 @@ class DocsControllerTest < ActionDispatch::IntegrationTest
 
     post session_path, params: { session: { email: 'john@example.com', password: 'password' } }
     assert_redirected_to root_path
-    
+
     patch doc_url(@doc), params: { doc: { title: "Updated Title", body: "Updated Body" } }
     assert_redirected_to doc_url(@doc)
     @doc.reload
