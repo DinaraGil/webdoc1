@@ -11,9 +11,9 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to root_path, notice: 'Вы зарегистрированы'
     else
-      flash.now[:alert] = 'Вы неправильно заполнили поля формы регистрации'
+      flash[:alert] = 'Вы неправильно заполнили поля формы регистрации'
 
-      render :new
+      redirect_to new_user_path
     end
   end
 end

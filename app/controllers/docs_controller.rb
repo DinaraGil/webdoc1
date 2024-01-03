@@ -1,5 +1,10 @@
 class DocsController < ApplicationController
-    before_action :authenticate_user, except: [:index]
+    before_action :authenticate_user, except: [:index, :count]
+
+    def count
+        count = Doc.count
+        render json: { count: count }
+    end
 
     def authenticate_user
         unless current_user.present?

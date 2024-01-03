@@ -2,6 +2,7 @@ en:
   index:
     title_index: "All documents"
     hi: "Hello"
+    js_title: "Amount of available documents: "
 
   buttons:
     save: "Save"

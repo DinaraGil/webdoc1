@@ -20,14 +20,14 @@
         </a>
       </div>
 
-      <%# <ul class="nav col-12 col-lg-auto me-lg mb-2 justify-content-center mb-md-0">
-          <li><div class="language-select">
-          <%= form_tag(change_language_path, method: :post) do %>
-            <%# <%= select_tag(:locale, options_for_select([['English', 'en'], ['Русский', 'ru']], I18n.locale.to_s), class: 'form-select', onchange: 'this.form.submit();') %>
-          <%# <% end %>
-        <%# </div></li>
-        </ul> %> 
-
+      <div class="nav col-12 col-lg-auto me-lg mb-2 justify-content-center mb-md-0">
+    <div class="language-select">
+    <%= form_tag(change_language_path, method: :post) do %>
+      <%= select_tag(:locale, options_for_select([['English', 'en'], ['Русский', 'ru']], I18n.locale.to_s), class: 'form-select', onchange: 'this.form.submit();') %>
+    <% end %>
+  </div>
+  </div>
+  
       <div class="col-md-3 text-end">
           <% if current_user.present? %>
           <div class="d-flex align-items-center">
@@ -40,12 +40,6 @@
           <% end %>
       </div>
     </header>
-
-    <div class="language-select">
-    <%= form_tag(change_language_path, method: :post) do %>
-      <%= select_tag(:locale, options_for_select([['English', 'en'], ['Русский', 'ru']], I18n.locale.to_s), class: 'form-select', onchange: 'this.form.submit();') %>
-    <% end %>
-  </div> 
 
       <div class="wrapper">
         <% if flash[:notice].present? %>

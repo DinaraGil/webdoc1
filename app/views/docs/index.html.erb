@@ -9,7 +9,21 @@
     <%# bootstrap style settings %>
     <div class="alert alert-light">
         <h3><%= d.title %></h3>
-        <%# <p><%= d.body %>
         <%= link_to t('buttons.make_doc'), doc_path(d) ,:class => 'btn btn-success'%>
     </div>
 <% end %>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var pageTitle = document.querySelector('h1');
+        var infoElement = document.createElement('p');
+
+        fetch('/docs/count')
+          .then(response => response.json())
+          .then(data => {
+              infoElement.textContent = "Количество доступных шаблонов заявлений: " + data.count;
+              pageTitle.insertAdjacentElement('afterend', infoElement);
+          })
+          .catch(error => console.error('Ошибка при получении количества записей:', error));
+    });
+</script>

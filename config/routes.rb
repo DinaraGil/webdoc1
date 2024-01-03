@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root 'docs#index'
 
+  get 'docs/count', to: 'docs#count'
+
   get "up" => "rails/health#show", as: :rails_health_check
 
   resources :docs do
